@@ -333,12 +333,20 @@ function ArchetypeSwitcher({ current, onSelect, onClose }) {
 
 function ArchetypePickerList({ onSelect, onSkip }) {
   const icons = { royal_court:'♛', tiny_tyrant:'◈', little_creature:'❋', feral_goblin:'⚡', field_researcher:'◉' };
-  return <div>{archetypes.filter(a => a.id !== ARCHETYPES.PLAIN && a.status === 'active').map(a => (
-    <div key={a.id} onClick={() => onSelect(a.id)} style={{ background: 'rgba(255,255,255,0.75)', border: '1px solid rgba(200,185,165,0.3)', borderRadius: 14, padding: '13px 16px', marginBottom: 10, cursor: 'pointer' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}><span style={{ fontSize: 15, color: '#C8A97E' }}>{icons[a.id]}</span><span style={{ fontFamily: "'Crimson Pro',Georgia,serif", fontSize: 16, color: '#3A2E24', fontWeight: 600 }}>{a.display_name}</span></div>
-      <p style={{ margin: 0, fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: '#7A6A5E' }}>{a.short_description}</p>
+  return (
+    <div>
+      {archetypes.filter(a => a.id !== ARCHETYPES.PLAIN && a.status === 'active').map(a => (
+        <div key={a.id} onClick={() => onSelect(a.id)} style={{ background: 'rgba(255,255,255,0.75)', border: '1px solid rgba(200,185,165,0.3)', borderRadius: 14, padding: '13px 16px', marginBottom: 10, cursor: 'pointer' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
+            <span style={{ fontSize: 15, color: '#C8A97E' }}>{icons[a.id]}</span>
+            <span style={{ fontFamily: "'Crimson Pro',Georgia,serif", fontSize: 16, color: '#3A2E24', fontWeight: 600 }}>{a.display_name}</span>
+          </div>
+          <p style={{ margin: 0, fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: '#7A6A5E' }}>{a.short_description}</p>
+        </div>
+      ))}
+      <button onClick={onSkip} style={{ ...btnSkp, textAlign: 'center', marginTop: 8 }}>Use plain voice instead</button>
     </div>
-  ))<button onClick={onSkip} style={{ ...btnSkp, textAlign: 'center', marginTop: 8 }}>Use plain voice instead</button></div>;
+  );
 }
 
 function ClassificationResult({ result, nickname, onAccept, onPickManually }) {
@@ -412,14 +420,14 @@ function FeedbackModal({ onRate }) {
       <div style={{ background: '#FFFDF8', borderRadius: '24px 24px 0 0', width: '100%', maxWidth: 480, padding: '20px 22px 52px', animation: 'slideUp 0.28s cubic-bezier(0.32,0.72,0,1)', boxShadow: '0 -4px 40px rgba(100,80,60,0.14)' }}>
         <div style={{ width: 32, height: 4, background: '#E2D8CE', borderRadius: 4, margin: '0 auto 20px' }} />
         {phase === 'rate' ? (
-          <>{
+          <>
             <div style={{ fontSize: 17, color: '#5A4A3E', fontFamily: "'Crimson Pro',Georgia,serif", fontStyle: 'italic', marginBottom: 18, textAlign: 'center' }}>How did that go?</div>
-          }
-          {[{k:'loved',l:'Loved it',s:'✦'},{k:'okay',l:'Okay',s:'◇'},{k:'not_today',l:'Not today',s:'○'}].map(r => (
-            <button key={r.k} onClick={() => pick(r.k)} style={{ width: '100%', padding: '14px 18px', marginBottom: 8, background: 'white', border: '1px solid rgba(200,185,165,0.3)', borderRadius: 14, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 14, fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: '#3A2E24' }}>
-              <span style={{ fontSize: 18, color: '#C8A97E', width: 22, textAlign: 'center' }}>{r.s}</span>{r.l}
-            </button>
-          ))}</>
+            {[{k:'loved',l:'Loved it',s:'✦'},{k:'okay',l:'Okay',s:'◇'},{k:'not_today',l:'Not today',s:'○'}].map(r => (
+              <button key={r.k} onClick={() => pick(r.k)} style={{ width: '100%', padding: '14px 18px', marginBottom: 8, background: 'white', border: '1px solid rgba(200,185,165,0.3)', borderRadius: 14, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 14, fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: '#3A2E24' }}>
+                <span style={{ fontSize: 18, color: '#C8A97E', width: 22, textAlign: 'center' }}>{r.s}</span>{r.l}
+              </button>
+            ))}
+          </>
         ) : (
           <>
             <div style={{ fontSize: 14, color: '#7A6A5E', fontFamily: "'DM Sans',sans-serif", marginBottom: 14 }}>What got in the way? <span style={{ color: '#B8A898' }}>(optional)</span></div>

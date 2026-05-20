@@ -19,7 +19,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { PRINCIPLES, principles } from './bloom-principles.js';
 import { ARCHETYPES, archetypes, CLASSIFIER_SYSTEM_PROMPT, classifyNicknameLocally } from './bloom-archetypes.js';
 import { activities } from './bloom-activities.js';
-import { debug, DebugOverlay } from './bloom-debug.js';
+import { debug, DebugOverlay } from './bloom-debug.jsx';
 
 // ─── Display constants ────────────────────────────────────────────────────────
 // Domain values from principles.js use snake_case: motor, sensory, language,

@@ -1,0 +1,25 @@
+{
+  "name": "Bloom",
+  "short_name": "Bloom",
+  "description": "Activity ideas for you and your baby, whenever you need them.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FDF6ED",
+  "theme_color": "#C8A97E",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

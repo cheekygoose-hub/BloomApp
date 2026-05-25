@@ -1364,7 +1364,6 @@ export default function BloomApp() {
   useEffect(() => { save('bloom_preset', activePreset); }, [activePreset]);
   useEffect(() => { save('bloom_ohm', ohm); }, [ohm]);
   useEffect(() => { save('bloom_nickname_on', nicknameOn); }, [nicknameOn]);
-  useEffect(() => { save('bloom_inprogress', inProgress); }, [inProgress]); // eslint-disable-line
   useEffect(() => { if (screen !== 'onboarding') save('bloom_screen', screen); }, [screen]);
 
   const babyAge = ageWeeks(profile?.dob);
@@ -1401,6 +1400,7 @@ export default function BloomApp() {
   const [activityIsRepeat, setActivityIsRepeat]           = useState(false);
   const [activityArchetypeOverride, setActivityArchetypeOverride] = useState(null);
   const [inProgress, setInProgress]   = useState(() => load('bloom_inprogress', null));
+  useEffect(() => { save('bloom_inprogress', inProgress); }, [inProgress]); // eslint-disable-line
   const [bloomPulse, setBloomPulse]   = useState(false);
   const [postBeat, setPostBeat]       = useState(null); // { rating }
   const justCompleted = useRef(false);
